@@ -1,4 +1,7 @@
-export function handleSubmit(event: any){
-console.log(event);
-event.preventDefault();
+export function loginValidation (username:string, password:string){
+if (username==='demo'&& password ==='demo'){
+    return true;
+}else{
+    return false;
+}
 }
