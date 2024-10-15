@@ -2,9 +2,9 @@ import React, { useMemo, useState } from 'react';
 import { AgGridReact } from 'ag-grid-react'; // React Data Grid Component
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
-import { stationsKerala } from '../../data/stations';
-import { Stations } from '../interfaces/stations';
-
+import { stationsKerala } from '../../../data/stations';
+import { Stations } from '../../../interfaces/stations';
+import Title from '../../reusableComponents/titleComponent';
 
 
 const Home = () => {
@@ -28,9 +28,11 @@ const Home = () => {
 const paginationPageSize = 20;
   
   return (
+    <>
+    <Title title='Select the station nearest to your crossing' />
     <div
       className="ag-theme-quartz" // applying the Data Grid theme
-      style={{ height: 900, width: '100%',textAlign:"center"}} // the Data Grid will fill the size of the parent container
+      style={{ height: '100%', width: '100%',textAlign:"center"}} // the Data Grid will fill the size of the parent container
     >
       <AgGridReact
         rowData={rowData}
@@ -40,6 +42,8 @@ const paginationPageSize = 20;
         rowSelection={rowSelection}
       />
     </div>
+    </>
+
   );
   }
   
