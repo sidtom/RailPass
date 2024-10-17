@@ -6,7 +6,7 @@ import { stationsKerala } from '../../../data/stations';
 import { Stations } from '../../../interfaces/stations';
 import Title from '../../reusableComponents/titleComponent';
 import { useNavigate } from 'react-router-dom';
-
+import './home.css';
 
 const Home = () => {
   const navigate = useNavigate();
