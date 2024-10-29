@@ -7,25 +7,16 @@ import { Stations } from '../../../interfaces/stations';
 import Title from '../../reusableComponents/titleComponent';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
+import { getTrainsBetweenStations } from '../../../services/requests';
 
 const Home = () => {
   const navigate = useNavigate();
   // Row Data: The data to be displayed.
   const [rowData] = useState<Stations[]>(stationsKerala);
-
+  const [trainData, setTrainData] = useState({});
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs] = useState<any>([
-    { field: "Name", filter: true, flex: 5 ,floatingFilter: true ,
-      cellRenderer: (params:any) => {
-      return (
-          <span
-              style={{ cursor: 'pointer', color: 'blue' }}
-              onClick={() => handleCellClick(params.value)}
-          >
-              {params.value}
-          </span>
-      );
-  }},
+    { field: "Name", filter: true, flex: 5 ,floatingFilter: true},
     { field: "Code", filter: true,flex :5,floatingFilter: true },
   ]);
 
@@ -33,6 +24,10 @@ const Home = () => {
     navigate(`/timing/${id}`);
 };
 
+const onRowClicked =(e:any)=>{
+handleCellClick(e.data.Code);
+getTrainsBetweenStations();
+}
   const pagination = true;
 const paginationPageSize = 20;
   
@@ -48,6 +43,7 @@ const paginationPageSize = 20;
         pagination={pagination}
         paginationPageSize={paginationPageSize}
         columnDefs={colDefs}
+        onRowClicked={onRowClicked}
       />
     </div>
     </>
