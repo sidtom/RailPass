@@ -8,6 +8,7 @@ import Title from '../../reusableComponents/titleComponent';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
 import { getTrainsBetweenStations } from '../../../services/requests';
+import { getAdjacentStationCodes } from '../../../services/utils';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,7 +27,8 @@ const Home = () => {
 
 const onRowClicked =(e:any)=>{
 handleCellClick(e.data.Code);
-getTrainsBetweenStations();
+const {fromStationCode, toStationCode} = getAdjacentStationCodes(e.data.Code);
+getTrainsBetweenStations(fromStationCode,toStationCode);
 }
   const pagination = true;
 const paginationPageSize = 20;
