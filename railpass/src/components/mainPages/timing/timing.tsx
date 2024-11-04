@@ -1,10 +1,15 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
+
 
 const Timing = () => {
-  const { stationName } = useParams();
+  const { stationCode } = useParams();  
+  console.log(stationCode);  
+  const location = useLocation();
+  const trainData = location.state?.data;
+console.log(trainData);
   return (
-    <div>{stationName}</div>
+    <div>{stationCode}</div>
   )
 }
 export default Timing;

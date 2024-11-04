@@ -1,8 +1,8 @@
 import { trainsBetweenStationsURL, apiKey } from "../config/url";
 export const getTrainsBetweenStations = async (fromStationCode:any,toStationCode:any, formattedDate:any ) =>{
     const queryParams = new URLSearchParams({
-      fromStationCode: fromStationCode,
-      toStationCode: toStationCode,
+      fromStationCode: 'TVC',
+      toStationCode: 'ERN',
       dateOfJourney: formattedDate
     });
   
