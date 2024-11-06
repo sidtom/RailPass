@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
+import { Grid } from "../../reusableComponents/agGrid";
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
 import { stationsKerala } from "../../../data/stations";
@@ -57,7 +58,7 @@ const Home = () => {
         className="ag-theme-quartz"
         style={{ height: "100%", width: "100%", textAlign: "center" }}
       >
-        <AgGridReact
+        <Grid
           rowData={rowData}
           pagination={pagination}
           paginationPageSize={paginationPageSize}

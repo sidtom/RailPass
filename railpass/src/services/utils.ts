@@ -13,3 +13,24 @@ export function getAdjacentStationCodes(stationCode:string) {
 
     return { fromStationCode, toStationCode };
 }
+
+export function extractTrainData (trainData: any) {
+    const extractedTrainData = trainData.data.map(
+      (train: {
+        from_sta: any;
+        to_sta: any;
+        train_number: any;
+        train_name: any;
+        from_station_name: any;
+        to_station_name: any;
+      }) => ({
+        train_number: train.train_number,
+        train_name: train.train_name,
+        from_station: train.from_station_name,
+        to_station: train.to_station_name,
+        departure_time: train.from_sta,
+        arrival_time: train.to_sta,
+      })
+    );
+    return extractedTrainData;
+  };
