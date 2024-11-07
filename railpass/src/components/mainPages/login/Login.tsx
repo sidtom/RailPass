@@ -23,13 +23,15 @@ const Login = () => {
     <Box>
       <form className="formContainer" onSubmit={handleSubmit}>
         <TextField
-          sx={{ marginTop: "20px" }}
+          sx={{ marginTop: "250px" }}
           type="text"
           value={username}
+          placeholder="Username"
           onChange={(e) => setUsername(e.target.value)}
         />
         <TextField
           sx={{ marginTop: "20px" }}
+          placeholder="Password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
