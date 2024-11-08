@@ -14,6 +14,11 @@ export function getAdjacentStationCodes(stationCode:string) {
     return { fromStationCode, toStationCode };
 }
 
+export const formattedDate =()=>  {
+  const today = new Date();
+  return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+}
+
 export function extractTrainData (trainData: any) {
     const extractedTrainData = trainData.data.map(
       (train: {

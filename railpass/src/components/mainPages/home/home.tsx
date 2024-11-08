@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import "./home.css";
 import { getTrainsBetweenStations } from "../../../services/requests";
 import { mockTrainsBetweenFunction } from "../../../services/mockApis";
-import { getAdjacentStationCodes } from "../../../services/utils";
+import { getAdjacentStationCodes, formattedDate } from "../../../services/utils";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -33,11 +33,6 @@ const Home = () => {
   const handleCellClick = (stationCode:any) => {
     navigate(`/timing/${stationCode}`, { state: { data: trainData } });
   };
-
-  const formattedDate = useMemo(() => {
-    const today = new Date();
-    return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-  }, []); // empty dependency array, so it only runs once on mount
 
   const onRowClicked = async (e: any) => {
     const { fromStationCode, toStationCode } = getAdjacentStationCodes(
