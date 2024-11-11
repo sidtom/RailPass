@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { extractTrainData } from "../../../services/utils";
+// import { extractTrainData } from "../../../services/utils";
 import { Grid } from "../../reusableComponents/agGrid";
 
 const Timing = () => {
@@ -8,49 +8,35 @@ const Timing = () => {
 
   const location = useLocation();
   const trainData = location.state?.data;
-  const extractedTrainData = extractTrainData(trainData);
-  const [rowData] = useState(extractedTrainData);
+  // const extractedTrainData = extractTrainData(trainData);
+  const [rowData] = useState(trainData);
   const [colDefs] = useState<any>([
     {
-      field: "train_number",
+      field: "trainNo",
       headerName: "Train Number",
       filter: true,
       flex: 2,
       floatingFilter: true,
     },
     {
-      field: "train_name",
+      field: "trainName",
       headerName: "Train Name",
       filter: true,
       flex: 4,
       floatingFilter: true,
     },
     {
-      field: "from_station",
-      headerName: "From Station",
-      filter: true,
-      flex: 3,
-      floatingFilter: true,
-    },
-    {
-      field: "to_station",
-      headerName: "To Station",
-      filter: true,
-      flex: 3,
-      floatingFilter: true,
-    },
-    {
-      field: "departure_time",
-      headerName: "Departure Time",
-      filter: true,
-      flex: 2,
-      floatingFilter: true,
-    },
-    {
-      field: "arrival_time",
+      field: "arrivalTime",
       headerName: "Arrival Time",
       filter: true,
-      flex: 2,
+      flex: 3,
+      floatingFilter: true,
+    },
+    {
+      field: "departureTime",
+      headerName: "Departure Time",
+      filter: true,
+      flex: 3,
       floatingFilter: true,
     },
   ]);

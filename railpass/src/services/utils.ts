@@ -39,3 +39,20 @@ export function extractTrainData (trainData: any) {
     );
     return extractedTrainData;
   };
+
+  export function removeDuplicateTrains(trains: any[]) {
+    const uniqueTrains: any[] = [];
+    const seenTrains = new Set();
+    trains.forEach(train => {
+        // Create a unique key based on train number, arrival, and departure times
+        const trainKey = `${train.trainNo}-${train.arrivalTime}-${train.departureTime}`;
+        
+        // Check if the trainKey is already seen; if not, add to uniqueTrains and mark it as seen
+        if (!seenTrains.has(trainKey)) {
+            uniqueTrains.push(train);
+            seenTrains.add(trainKey);
+        }
+    });
+
+    return uniqueTrains;
+}

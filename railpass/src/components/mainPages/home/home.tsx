@@ -8,9 +8,9 @@ import { Stations } from "../../../interfaces/stations";
 import Title from "../../reusableComponents/titleComponent";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
-import { getTrainsBetweenStations } from "../../../services/requests";
+import { getTrainsBetweenStations, getTrainsByStation } from "../../../services/requests";
 import { mockTrainsBetweenFunction } from "../../../services/mockApis";
-import { getAdjacentStationCodes, formattedDate } from "../../../services/utils";
+import { getAdjacentStationCodes, formattedDate, removeDuplicateTrains } from "../../../services/utils";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,22 +24,26 @@ const Home = () => {
     { field: "Code", filter: true, flex: 5, floatingFilter: true },
   ]);
 
-  useEffect(() => {
-    if (trainData && selectedStation) {
-      handleCellClick(selectedStation);
-    }
-  }, [trainData,selectedStation]);
+
 
   const handleCellClick = (stationCode:any) => {
     navigate(`/timing/${stationCode}`, { state: { data: trainData } });
   };
 
+  useEffect(() => {
+    if (trainData && selectedStation) {
+      handleCellClick(selectedStation);
+    }
+  }, [trainData, selectedStation]);
+
   const onRowClicked = async (e: any) => {
-    const { fromStationCode, toStationCode } = getAdjacentStationCodes(
-      e.data.Code
-    );
-    let trainsBetweenData = await mockTrainsBetweenFunction();
-    setTrainData(trainsBetweenData);
+    // const { fromStationCode, toStationCode } = getAdjacentStationCodes(
+    //   e.data.Code
+    // );
+    let trainsByStationData = await getTrainsByStation(e.data.Code);
+    let transformedData = removeDuplicateTrains(trainsByStationData.data.passing)
+    // let trainsBetweenData = await mockTrainsBetweenFunction();
+    setTrainData(transformedData);
     setSelectedStation(e.data.Code);
     // getTrainsBetweenStations(fromStationCode, toStationCode, formattedDate);
   };
