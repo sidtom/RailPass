@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 // import { extractTrainData } from "../../../services/utils";
 import { Grid } from "../../reusableComponents/agGrid";
+import { filterTrainsByArrival } from "../../../services/utils";
 
 const Timing = () => {
   // const { stationName } = useParams();
 
   const location = useLocation();
   const trainData = location.state?.data;
+  const trainsWithinThreeHourse = filterTrainsByArrival(trainData);
   // const extractedTrainData = extractTrainData(trainData);
-  const [rowData] = useState(trainData);
+  const [rowData] = useState(trainsWithinThreeHourse);
   const [colDefs] = useState<any>([
     {
       field: "trainNo",
