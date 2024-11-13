@@ -56,18 +56,3 @@ export function extractTrainData (trainData: any) {
 
     return uniqueTrains;
 }
-
-export function filterTrainsByArrival(trains: any[]) {
-  const currentTime = new Date();
-  const threeHoursLater = new Date(currentTime.getTime() + 3 * 60 * 60 * 1000);
-
-  return trains.filter(train => {
-      // Combine current date with the train's arrival time
-      const [hours, minutes] = train.arrivalTime.split(':').map(Number);
-      const arrivalDate = new Date(currentTime);
-      arrivalDate.setHours(hours, minutes, 0, 0);
-
-      // Check if the arrival time is within the 3-hour window
-      return arrivalDate >= currentTime && arrivalDate <= threeHoursLater;
-  });
-}
