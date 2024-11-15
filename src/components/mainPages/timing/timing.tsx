@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useParams, useLocation } from "react-router-dom";
 // import { extractTrainData } from "../../../services/utils";
 import { Grid } from "../../reusableComponents/agGrid";
+import { filterTrainsByArrivalTime } from "../../../services/utils";
 
 const Timing = () => {
   // const { stationName } = useParams();
 
   const location = useLocation();
   const trainData = location.state?.data;
-  // const extractedTrainData = extractTrainData(trainData);
-  const [rowData] = useState(trainData);
+  const filteredTrains = filterTrainsByArrivalTime(trainData);
   const [colDefs] = useState<any>([
     {
       field: "trainNo",
@@ -45,7 +45,7 @@ const Timing = () => {
       className="ag-theme-quartz"
       style={{ height: "100%", width: "100%", textAlign: "center" }}
     >
-      <Grid rowData={rowData} pagination={false} columnDefs={colDefs} />
+      <Grid rowData={filteredTrains} pagination={false} columnDefs={colDefs} />
     </div>
   );
 };

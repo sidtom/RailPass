@@ -56,3 +56,25 @@ export function extractTrainData (trainData: any) {
 
     return uniqueTrains;
 }
+
+export const filterTrainsByArrivalTime = (trains:any) => {
+  const currentTime = new Date();
+
+
+  return trains
+    .filter((train: any) => {
+      const [hours, minutes] = train.arrivalTime.split(':').map(Number);
+      const arrivalDate = new Date();
+      arrivalDate.setHours(hours, minutes, 0, 0); // Set time based on arrivalTime
+
+      return arrivalDate > currentTime;
+    })
+    .sort((a:any, b:any) => {
+      const [aHours, aMinutes] = a.arrivalTime.split(':').map(Number);
+      const [bHours, bMinutes] = b.arrivalTime.split(':').map(Number);
+
+      // Compare based on hours and minutes
+      if (aHours !== bHours) return aHours - bHours;
+      return aMinutes - bMinutes;
+    });
+};
