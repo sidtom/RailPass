@@ -3,6 +3,7 @@ import { useParams, useLocation } from "react-router-dom";
 // import { extractTrainData } from "../../../services/utils";
 import { Grid } from "../../reusableComponents/agGrid";
 import { filterTrainsByArrivalTime } from "../../../services/utils";
+import { ColDef } from "ag-grid-community";
 
 const Timing = () => {
   // const { stationName } = useParams();
@@ -10,7 +11,7 @@ const Timing = () => {
   const location = useLocation();
   const trainData = location.state?.data;
   const filteredTrains = filterTrainsByArrivalTime(trainData);
-  const [colDefs] = useState<any>([
+  const [colDefs] = useState<ColDef[]>([
     {
       field: "trainNo",
       headerName: "Train Number",

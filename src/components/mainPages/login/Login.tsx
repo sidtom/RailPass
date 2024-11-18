@@ -9,7 +9,7 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const loginValid = loginValidation(username, password);
     if (loginValid) {

@@ -1,4 +1,5 @@
 import { stationsKerala } from "../data/stations";
+import { Train, TrainData } from "../interfaces/trainData";
 
 export function getAdjacentStationCodes(stationCode:string) {
     const index = stationsKerala.findIndex(station => station.Code === stationCode);
@@ -19,16 +20,9 @@ export const formattedDate =()=>  {
   return `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
 }
 
-export function extractTrainData (trainData: any) {
-    const extractedTrainData = trainData.data.map(
-      (train: {
-        from_sta: any;
-        to_sta: any;
-        train_number: any;
-        train_name: any;
-        from_station_name: any;
-        to_station_name: any;
-      }) => ({
+export function extractTrainData (trainData: TrainData[]) {
+    const extractedTrainData = trainData.map(
+      (train: TrainData) => ({
         train_number: train.train_number,
         train_name: train.train_name,
         from_station: train.from_station_name,
@@ -40,8 +34,8 @@ export function extractTrainData (trainData: any) {
     return extractedTrainData;
   };
 
-  export function removeDuplicateTrains(trains: any[]) {
-    const uniqueTrains: any[] = [];
+  export function removeDuplicateTrains(trains: Train[]) {
+    const uniqueTrains: Train[] = [];
     const seenTrains = new Set();
     trains.forEach(train => {
         // Create a unique key based on train number, arrival, and departure times
@@ -57,19 +51,17 @@ export function extractTrainData (trainData: any) {
     return uniqueTrains;
 }
 
-export const filterTrainsByArrivalTime = (trains:any) => {
+export const filterTrainsByArrivalTime = (trains:Train[]) => {
   const currentTime = new Date();
-
-
   return trains
-    .filter((train: any) => {
+    .filter((train: Train) => {
       const [hours, minutes] = train.arrivalTime.split(':').map(Number);
       const arrivalDate = new Date();
       arrivalDate.setHours(hours, minutes, 0, 0); // Set time based on arrivalTime
 
       return arrivalDate > currentTime;
     })
-    .sort((a:any, b:any) => {
+    .sort((a, b) => {
       const [aHours, aMinutes] = a.arrivalTime.split(':').map(Number);
       const [bHours, bMinutes] = b.arrivalTime.split(':').map(Number);
 

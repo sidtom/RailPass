@@ -1,5 +1,5 @@
 import { trainsBetweenStationsURL, apiKey, trainsByStationURL } from "../config/url";
-export const getTrainsBetweenStations = async (fromStationCode:any,toStationCode:any, formattedDate:any ) =>{
+export const getTrainsBetweenStations = async (fromStationCode:string,toStationCode:string, formattedDate:string ) =>{
     const queryParams = new URLSearchParams({
       fromStationCode: fromStationCode,
       toStationCode: toStationCode,
@@ -16,7 +16,6 @@ export const getTrainsBetweenStations = async (fromStationCode:any,toStationCode
   
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
     } else {
       console.error('Error fetching data:', response.status, response.statusText);
     }
