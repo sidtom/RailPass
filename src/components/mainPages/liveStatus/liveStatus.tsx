@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { Grid } from "../../reusableComponents/agGrid";
-import { filterTrainsByArrivalTime } from "../../../services/utils";
 import { ColDef } from "ag-grid-community";
+import { useParams } from "react-router-dom";
 
-const Timing = () => {
-  const navigate = useNavigate();
-  const onRowClicked = async (e: any) => {
-    navigate(`/liveStatus/${e.data.trainNo}`, { state: { data: trainData } });
-  };
-  const location = useLocation();
-  const trainData = location.state?.data;
-  const filteredTrains = filterTrainsByArrivalTime(trainData);
+const LiveStatus = () => {
+  const {trainNo} = useParams();
   const [colDefs] = useState<ColDef[]>([
     {
       field: "trainNo",
@@ -47,13 +40,9 @@ const Timing = () => {
       className="ag-theme-quartz"
       style={{ height: "100%", width: "100%", textAlign: "center" }}
     >
-      <Grid
-        rowData={filteredTrains}
-        pagination={false}
-        columnDefs={colDefs}
-        onRowClicked={onRowClicked}
-      />
+      <Grid rowData={{}} pagination={false} columnDefs={colDefs} />
     </div>
   );
-};
-export default Timing;
+}
+
+export default LiveStatus;
