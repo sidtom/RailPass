@@ -7,7 +7,7 @@ import { ColDef } from "ag-grid-community";
 const Timing = () => {
   const navigate = useNavigate();
   const onRowClicked = async (e: any) => {
-    navigate(`/liveStatus/${e.data.trainNo}`, { state: { data: trainData } });
+    navigate(`/liveStatus/${e.data.trainNo}`);
   };
   const location = useLocation();
   const trainData = location.state?.data;

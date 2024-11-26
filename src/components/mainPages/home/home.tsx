@@ -26,8 +26,6 @@ const Home = () => {
     { field: "Code", filter: true, flex: 5, floatingFilter: true },
   ]);
 
-
-
   const handleCellClick = (stationCode:string) => {
     navigate(`/timing/${stationCode}`, { state: { data: trainData } });
   };
@@ -63,7 +61,7 @@ const Home = () => {
         />
       </div>
     </>
-  );
+  ); 
 };
 
 export default Home;
