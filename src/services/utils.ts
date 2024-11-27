@@ -51,15 +51,20 @@ export function extractTrainData (trainData: TrainData[]) {
     return uniqueTrains;
 }
 
-export const filterTrainsByArrivalTime = (trains:Train[]) => {
+export const filterTrainsByArrivalTime = (trains: Train[]) => {
   const currentTime = new Date();
+
   return trains
     .filter((train: Train) => {
       const [hours, minutes] = train.arrivalTime.split(':').map(Number);
       const arrivalDate = new Date();
       arrivalDate.setHours(hours, minutes, 0, 0); // Set time based on arrivalTime
 
-      return arrivalDate > currentTime;
+      // Check if the arrival time is within the next hour
+      const oneHourBefore = new Date(currentTime);
+      oneHourBefore.setHours(currentTime.getHours() - 1);
+
+      return arrivalDate > oneHourBefore ;
     })
     .sort((a, b) => {
       const [aHours, aMinutes] = a.arrivalTime.split(':').map(Number);
