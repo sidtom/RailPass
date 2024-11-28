@@ -1,17 +1,40 @@
-import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { Grid } from "../../reusableComponents/agGrid";
-import { filterTrainsByArrivalTime } from "../../../services/utils";
+import {
+  filterTrainsByArrivalTime,
+  removeDuplicateTrains,
+} from "../../../services/utils";
 import { ColDef } from "ag-grid-community";
+import { getTrainsByStation } from "../../../services/requests";
+import { Loader } from "../../reusableComponents/loader";
 
 const Timing = () => {
+  const { stationName } = useParams();
+  const [rowData, setRowData] = useState<any[]>([]); // State for row data array
+  const [responseMessage, setResponseMessage] = useState(false);
   const navigate = useNavigate();
   const onRowClicked = async (e: any) => {
     navigate(`/liveStatus/${e.data.trainNo}`);
   };
-  const location = useLocation();
-  const trainData = location.state?.data;
-  const filteredTrains = filterTrainsByArrivalTime(trainData);
+
+  useEffect(() => {
+    const getTimings = async () => {
+      if (stationName) {
+        let trainsByStationData = await getTrainsByStation(stationName);
+        if (trainsByStationData.status === true) {
+          let transformedData = await removeDuplicateTrains(
+            trainsByStationData.data.passing
+          );
+          const filteredTrains = await filterTrainsByArrivalTime(transformedData);
+          setRowData(filteredTrains);
+          setResponseMessage(trainsByStationData.status);
+        }
+      }
+    };
+    getTimings();
+  }, [stationName]);
+
   const [colDefs] = useState<ColDef[]>([
     {
       field: "trainNo",
@@ -47,12 +70,16 @@ const Timing = () => {
       className="ag-theme-quartz"
       style={{ height: "100%", width: "100%", textAlign: "center" }}
     >
-      <Grid
-        rowData={filteredTrains}
-        pagination={false}
-        columnDefs={colDefs}
-        onRowClicked={onRowClicked}
-      />
+      {responseMessage === true ? ( // Check if data exists before rendering Grid
+        <Grid
+          rowData={rowData}
+          pagination={false}
+          columnDefs={colDefs}
+          onRowClicked={onRowClicked}
+        />
+      ) : (
+        <Loader /> // Fallback for loading state
+      )}
     </div>
   );
 };

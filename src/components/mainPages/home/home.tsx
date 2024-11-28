@@ -16,29 +16,30 @@ const Home = () => {
   const navigate = useNavigate();
   // Row Data: The data to be displayed.
   const [rowData] = useState<Stations[]>(stationsKerala);
-  const [trainData, setTrainData] = useState<Train[]>();
-  const [selectedStation, setSelectedStation] = useState('');
+  // const [trainData, setTrainData] = useState<Train[]>();
+  // const [selectedStation, setSelectedStation] = useState('');
   // Column Definitions: Defines the columns to be displayed.
   const [colDefs] = useState<ColDef[]>([
     { field: "Name", filter: true, flex: 5, floatingFilter: true },
     { field: "Code", filter: true, flex: 5, floatingFilter: true },
   ]);
 
-  const handleCellClick = (stationCode:string) => {
-    navigate(`/timing/${stationCode}`, { state: { data: trainData } });
-  };
+  // const handleCellClick = (stationCode:string) => {
+  //   navigate(`/timing/${stationCode}`, { state: { data: trainData } });
+  // };
 
-  useEffect(() => {
-    if (trainData && selectedStation) {
-      handleCellClick(selectedStation);
-    }
-  }, [trainData, selectedStation]);
+  // useEffect(() => {
+  //   if (trainData && selectedStation) {
+  //     handleCellClick(selectedStation);
+  //   }
+  // }, [trainData, selectedStation]);
 
-  const onRowClicked = async (e: any) => {
-    let trainsByStationData = await getTrainsByStation(e.data.Code);
-    let transformedData = removeDuplicateTrains(trainsByStationData.data.passing)
-    setTrainData(transformedData);
-    setSelectedStation(e.data.Code);
+  const onRowClicked = (e: any) => {
+    navigate(`/timing/${e.data.Code}`);
+    // let trainsByStationData = await getTrainsByStation(e.data.Code);
+    // let transformedData = removeDuplicateTrains(trainsByStationData.data.passing)
+    // setTrainData(transformedData);
+    // setSelectedStation(e.data.Code);
   };
   const pagination = true;
   const paginationPageSize = 20;
