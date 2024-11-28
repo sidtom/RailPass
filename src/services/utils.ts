@@ -60,11 +60,11 @@ export const filterTrainsByArrivalTime = (trains: Train[]) => {
       const arrivalDate = new Date();
       arrivalDate.setHours(hours, minutes, 0, 0); // Set time based on arrivalTime
 
-      // Check if the arrival time is within the next hour
-      const oneHourBefore = new Date(currentTime);
-      oneHourBefore.setHours(currentTime.getHours() - 1);
+      // Check if the arrival time is within the last 30 minutes
+      const thirtyMinutesBefore = new Date(currentTime);
+      thirtyMinutesBefore.setMinutes(currentTime.getMinutes() - 30);
 
-      return arrivalDate > oneHourBefore ;
+      return arrivalDate > thirtyMinutesBefore;
     })
     .sort((a, b) => {
       const [aHours, aMinutes] = a.arrivalTime.split(':').map(Number);

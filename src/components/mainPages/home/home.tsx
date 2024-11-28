@@ -1,5 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
-import { AgGridReact } from "ag-grid-react"; // React Data Grid Component
+import React, { useState, useEffect } from "react";
 import { Grid } from "../../reusableComponents/agGrid";
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the Data Grid
 import "ag-grid-community/styles/ag-theme-quartz.css"; // Optional Theme applied to the Data Grid
@@ -9,9 +8,8 @@ import { Stations } from "../../../interfaces/stations";
 import Title from "../../reusableComponents/titleComponent";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
-import { getTrainsBetweenStations, getTrainsByStation } from "../../../services/requests";
-import { mockTrainsBetweenFunction } from "../../../services/mockApis";
-import { getAdjacentStationCodes, formattedDate, removeDuplicateTrains } from "../../../services/utils";
+import { getTrainsByStation } from "../../../services/requests";
+import { removeDuplicateTrains } from "../../../services/utils";
 import { Train } from "../../../interfaces/trainData";
 
 const Home = () => {
