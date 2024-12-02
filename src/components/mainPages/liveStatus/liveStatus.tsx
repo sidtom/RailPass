@@ -20,6 +20,7 @@ const LiveStatus = () => {
           {
             trainNo: response.data.train_number,
             trainName: response.data.train_name,
+            runDays: response.data.new_message,
             delay: response.data.delay,
           },
         ]);
@@ -45,6 +46,13 @@ const LiveStatus = () => {
       headerName: "Train Name",
       filter: true,
       flex: 4,
+      floatingFilter: true,
+    },
+    {
+      field: "runDays",
+      headerName: "Run Days",
+      filter: true,
+      flex: 3,
       floatingFilter: true,
     },
     {
