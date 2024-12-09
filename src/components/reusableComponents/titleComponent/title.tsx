@@ -1,8 +1,11 @@
-import React from 'react'
-import './title.css';
+import React from "react";
+import "./title.css";
+import Typography from "@mui/material/Typography";
 
-export default function Title(props:any) {
+export default function Title(props: any) {
   return (
-    <h1 className='titleCard'>{props.title}</h1>
-  )
+    <Typography variant="h3" gutterBottom>
+      {props.title}
+    </Typography>
+  );
 }

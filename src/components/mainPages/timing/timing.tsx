@@ -9,9 +9,12 @@ import { ColDef } from "ag-grid-community";
 import { getTrainsByStation } from "../../../services/requests";
 import { Loader } from "../../reusableComponents/loader";
 import { appContext } from "../../../context/context";
+import Title from "../../reusableComponents/titleComponent";
+import Divider from "@mui/material/Divider";
 
 const Timing = () => {
-  const { stationCode, setStationCode, timingData, setTimingData } = useContext(appContext);
+  const { stationCode, setStationCode, timingData, setTimingData } =
+    useContext(appContext);
   const [loading, setLoading] = useState(true);
   const { stationName } = useParams();
   const navigate = useNavigate();
@@ -79,21 +82,25 @@ const Timing = () => {
   ]);
 
   return (
-    <div
-      className="ag-theme-quartz"
-      style={{ height: "100%", width: "100%", textAlign: "center" }}
-    >
-      {!loading ? ( // Check if data exists before rendering Grid
-        <Grid
-          rowData={timingData}
-          pagination={false}
-          columnDefs={colDefs}
-          onRowClicked={onRowClicked}
-        />
-      ) : (
-        <Loader /> // Fallback for loading state
-      )}
-    </div>
+    <>
+      <Title title="Trains which might be near the selected station" />
+      <Divider />
+      <div
+        className="ag-theme-quartz"
+        style={{ height: "100%", width: "100%", textAlign: "center" }}
+      >
+        {!loading ? ( // Check if data exists before rendering Grid
+          <Grid
+            rowData={timingData}
+            pagination={false}
+            columnDefs={colDefs}
+            onRowClicked={onRowClicked}
+          />
+        ) : (
+          <Loader /> // Fallback for loading state
+        )}
+      </div>
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ import { Stations } from "../../../interfaces/stations";
 import Title from "../../reusableComponents/titleComponent";
 import { useNavigate } from "react-router-dom";
 import "./home.css";
+import Divider from '@mui/material/Divider';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Home = () => {
   return (
     <>
       <Title title="Select the station nearest to your crossing" />
+      <Divider/>
       <div
         className="ag-theme-quartz"
         style={{ height: "100%", width: "100%", textAlign: "center" }}
