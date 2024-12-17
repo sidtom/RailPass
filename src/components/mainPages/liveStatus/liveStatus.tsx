@@ -22,7 +22,7 @@ const LiveStatus = () => {
             {
               trainNo: response.data.train_number,
               trainName: response.data.train_name,
-              runDays: response.data.new_message,
+              runDays: response.data.run_days,
               delay: response.data.delay,
             },
           ]);

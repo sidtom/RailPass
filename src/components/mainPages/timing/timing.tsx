@@ -72,13 +72,6 @@ const Timing = () => {
       flex: 3,
       floatingFilter: true,
     },
-    {
-      field: "departureTime",
-      headerName: "Departure Time",
-      filter: true,
-      flex: 3,
-      floatingFilter: true,
-    },
   ]);
 
   return (
