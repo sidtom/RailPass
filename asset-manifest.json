@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/RailPass/static/css/main.a42c7029.css",
-    "main.js": "/RailPass/static/js/main.2dcf1321.js",
+    "main.css": "/RailPass/static/css/main.a88e058a.css",
+    "main.js": "/RailPass/static/js/main.2a2a292b.js",
     "static/js/453.edc95176.chunk.js": "/RailPass/static/js/453.edc95176.chunk.js",
     "index.html": "/RailPass/index.html",
-    "main.a42c7029.css.map": "/RailPass/static/css/main.a42c7029.css.map",
-    "main.2dcf1321.js.map": "/RailPass/static/js/main.2dcf1321.js.map",
+    "main.a88e058a.css.map": "/RailPass/static/css/main.a88e058a.css.map",
+    "main.2a2a292b.js.map": "/RailPass/static/js/main.2a2a292b.js.map",
     "453.edc95176.chunk.js.map": "/RailPass/static/js/453.edc95176.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a42c7029.css",
-    "static/js/main.2dcf1321.js"
+    "static/css/main.a88e058a.css",
+    "static/js/main.2a2a292b.js"
   ]
 }
