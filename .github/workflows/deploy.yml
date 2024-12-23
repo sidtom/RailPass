@@ -28,7 +28,7 @@ jobs:
       - name: Set Git user name and email
         run: |
           git config --global user.email "sidneygmz@gmail.com"
-          git config --global user.name "Sidney"
+          git config --global user.name "sidtom"
 
       # Step 3: Install dependencies
       - name: Install dependencies
