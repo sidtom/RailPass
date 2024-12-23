@@ -25,6 +25,11 @@ jobs:
       - name: Set CI to false
         run: echo "CI=false" >> $GITHUB_ENV
 
+      - name: Set Git user name and email
+        run: |
+          git config --global user.email "sidneygmz@gmail.com"
+          git config --global user.name "Sidney"
+
       # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
