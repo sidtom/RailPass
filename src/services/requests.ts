@@ -10,6 +10,7 @@ export const getTrainsBetweenStations = async (
   toStationCode: string,
   formattedDate: string
 ) => {
+  
   const queryParams = new URLSearchParams({
     fromStationCode: fromStationCode,
     toStationCode: toStationCode,
