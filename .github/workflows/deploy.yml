@@ -41,6 +41,7 @@ jobs:
           npm run deploy     # This will deploy to GitHub Pages using gh-pages
         env:
           REACT_APP_TRAIN_APP_API_KEY: ${{ secrets.REACT_APP_TRAIN_APP_API_KEY }}  # Inject your API key if needed
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       # Step 5: Notify if the deploy fails (optional)
       - name: Deployment Status
