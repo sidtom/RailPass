@@ -1,10 +1,10 @@
 import { METHODS } from "http";
 import {
   trainsBetweenStationsURL,
-  apiKey,
   trainsByStationURL,
   liveTrainStatusURL,
 } from "../config/url";
+const apiKey = process.env.REACT_APP_TRAIN_APP_API_KEY;
 export const getTrainsBetweenStations = async (
   fromStationCode: string,
   toStationCode: string,
