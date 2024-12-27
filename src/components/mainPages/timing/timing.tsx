@@ -76,7 +76,7 @@ const Timing = () => {
 
   return (
     <>
-      <Title title="Trains which might be near the selected station" />
+      <Title title="Trains timings for the selected station" />
       <Divider />
       <div
         className="ag-theme-quartz"
