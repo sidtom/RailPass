@@ -15,7 +15,7 @@ export const getTrainsBetweenStations = async (
     toStationCode: toStationCode,
     dateOfJourney: formattedDate,
   });
-
+  console.log(process);
   const response = await fetch(`${trainsBetweenStationsURL}?${queryParams}`, {
     method: "GET",
     headers: {
